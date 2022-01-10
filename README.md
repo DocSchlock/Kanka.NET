@@ -1,4 +1,5 @@
-﻿
+# This project is under heavy development at the moment and is not ready for use
+
 The Client class is the public actor for usage
 
 The 4 REST actions should be generic and not specific
