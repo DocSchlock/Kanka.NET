@@ -28,8 +28,11 @@ namespace Kanka.NET.Tests
             Assert.IsTrue(prof.Data?.Name?.Equals("DocSchlock"));
         }
 
+        [TestMethod]
         public async Task TestGetAllCampaigns()
         {
+            var campaigns = await _client.GetCampaigns();
+            Assert.IsNotNull(campaigns);
         }
 
         [TestMethod]

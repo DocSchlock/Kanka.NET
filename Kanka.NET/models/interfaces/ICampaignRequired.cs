@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kanka.NET.models
+namespace Kanka.NET.models.interfaces
 {
-    public class MetaResponse
+    public interface ICampaignRequired
     {
     }
 }

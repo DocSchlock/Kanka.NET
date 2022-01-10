@@ -1,4 +1,5 @@
-﻿using Kanka.NET.models;
+﻿using Humanizer;
+using Kanka.NET.models;
 using Kanka.NET.models.interfaces;
 using RestSharp;
 
@@ -66,10 +67,39 @@ namespace Kanka.NET
             return response.Data;
         }
 
+        /// <summary>
+        /// Get the profile of the current user
+        /// </summary>
+        /// <returns> Task<ResponseShell<Profile>></Profile></returns>
         public async Task<ResponseShell<Profile>> GetProfile()
         {
             var request = new RestRequest("profile", Method.Get);
             return await _client.GetAsync<ResponseShell<Profile>>(request);
+        }
+
+        /// <summary>
+        /// Get all the Campaigns for the current user
+        /// </summary>
+        /// <returns>Task<ResponseShell<List<Campaign>>></returns>
+        public async Task<ResponseShell<List<Campaign>>> GetCampaigns()
+        {
+            var request = new RestRequest("campaigns", Method.Get);
+            return await _client.GetAsync<ResponseShell<List<Campaign>>>(request);
+        }
+
+        /// <summary>
+        /// Generic Get method for all endpoints that require a campaign id
+        /// This method can only accept classes that implement ICampaignRequired
+        /// </summary>
+        /// <typeparam name="T">T must be a model class</typeparam>
+        /// <param name="campaign_id">a valid campaign id - get this beforehand</param>
+        /// <returns>Task<ResponseShell<T>></returns>
+        public async Task<ResponseShell<T>> GetEndpoint<T>(int campaign_id) where T : ICampaignRequired, new()
+        {
+            string path = $"campaigns/{campaign_id}/{typeof(T).Name.Pluralize}";
+            var request = new RestRequest(path, Method.Get);
+
+            return await _client.GetAsync<ResponseShell<T>>(request);
         }
     }
 }
