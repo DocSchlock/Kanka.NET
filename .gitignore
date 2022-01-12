@@ -132,3 +132,9 @@ $RECYCLE.BIN/
 
 _NCrunch*
 /Kanka.NET.Tests/config
+.vs/*
+v17/*
+DesignTimeBuild/*
+*.v1
+*.v2
+TestStore/*
