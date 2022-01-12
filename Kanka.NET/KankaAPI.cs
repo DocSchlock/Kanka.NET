@@ -35,7 +35,7 @@ namespace Kanka.NET
             _client = new RestClient(options)
                 .AddDefaultHeaders(headers);
 
-            // TODO: we need to immediately test the token for authorization
+            // we need to immediately test the token for authorization
             // this has to be run sync to test in the constructor
             // Kanka revokes all tokens once per year due to system upgrades
 
@@ -97,6 +97,7 @@ namespace Kanka.NET
         public async Task<ResponseShell<T>> GetEndpoint<T>(int campaign_id) where T : ICampaignRequired, new()
         {
             string path = $"campaigns/{campaign_id}/{typeof(T).Name.Pluralize}";
+
             var request = new RestRequest(path, Method.Get);
 
             return await _client.GetAsync<ResponseShell<T>>(request);
