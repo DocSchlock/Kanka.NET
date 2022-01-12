@@ -8,12 +8,6 @@ namespace Kanka.NET.models
         [JsonPropertyName("location_id")]
         public int? LocationId { get; set; }
 
-        [JsonPropertyName("entity_id")]
-        public int EntityId { get; set; }
-
-        [JsonPropertyName("tags")]
-        public int[]? Tags { get; set; }
-
         [JsonPropertyName("parent_location_id")]
         public int ParentLocationId { get; set; }
 

@@ -3,18 +3,18 @@ using System.Text.Json.Serialization;
 
 namespace Kanka.NET.models
 {
-    public class Family : EndpointAbstract, ICampaignRequired
+    public class Item : EndpointAbstract, ICampaignRequired
     {
-        [JsonPropertyName("family_id")]
-        public int FamilyId { get; set; }
-
-        [JsonPropertyName("members")]
-        public int[]? Members { get; set; } // these are character ids
-
         [JsonPropertyName("type")]
         public string? Type { get; set; }
 
         [JsonPropertyName("location_id")]
         public int LocationId { get; set; }
+
+        [JsonPropertyName("price")]
+        public string Price { get; set; }
+
+        [JsonPropertyName("size")]
+        public string Size { get; set; }
     }
 }

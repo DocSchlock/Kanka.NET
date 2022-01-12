@@ -39,5 +39,11 @@ namespace Kanka.NET.models
 
         [JsonPropertyName("has_custom_image")]
         public bool HasCustomImage { get; set; }
+
+        [JsonPropertyName("tags")]
+        public int[]? Tags { get; set; }
+
+        [JsonPropertyName("entity_id")]
+        public int EntityId { get; set; }
     }
 }

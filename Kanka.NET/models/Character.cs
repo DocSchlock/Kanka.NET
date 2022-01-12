@@ -14,9 +14,6 @@ namespace Kanka.NET.models
         [JsonPropertyName("is_template")]
         public bool IsTemplate { get; set; }
 
-        [JsonPropertyName("entity_id")]
-        public int EntityId { get; set; }
-
         [JsonPropertyName("location_id")]
         public int LocationId { get; set; }
 
@@ -40,9 +37,6 @@ namespace Kanka.NET.models
 
         [JsonPropertyName("races")]
         public int[]? Races { get; set; }
-
-        [JsonPropertyName("tags")]
-        public int[]? Tags { get; set; }
 
         [JsonPropertyName("is_dead")]
         public bool IsDead { get; set; }
