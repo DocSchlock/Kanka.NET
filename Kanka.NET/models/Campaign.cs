@@ -10,7 +10,7 @@ namespace Kanka.NET.models
     {
         public bool IsPluralized { get => true; }
 
-        [JsonPropertyName("next")]
+        [JsonPropertyName("id")]
         public int ID { get; set; }
 
         [JsonPropertyName("name")]
@@ -48,6 +48,12 @@ namespace Kanka.NET.models
 
         [JsonPropertyName("members")]
         public CampaignMembers[] Members { get; set; }
+
+        [JsonPropertyName("boosted")]
+        public bool Boosted { get; set; }
+
+        [JsonPropertyName("superboosted")]
+        public bool SuperBoosted { get; set; }
     }
 
     /// <summary>
