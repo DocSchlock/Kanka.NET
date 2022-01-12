@@ -13,8 +13,6 @@ Any action the API allows a user to take, you will be able to do with Kanka.NET.
 
 ## What's the status?
 
-We just started development recently and are working on getting the core architecture up and running. GET functionality will be available soon for all endpoints.
-
 | Endpoint | GET | POST | PATCH | DELETE |
 |:------------|:----------------------:|:----------------------:|:----------------------:|:----------------------:|
 |Profile      |:heavy_check_mark:      ||||
@@ -33,4 +31,6 @@ We just started development recently and are working on getting the core archite
 |Ability      |:heavy_check_mark:	   |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
 |Tag          |:heavy_check_mark:      |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
 |Conversation |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
+|Map		  |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
 |Dice Roll    |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
+|Entity	      |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|

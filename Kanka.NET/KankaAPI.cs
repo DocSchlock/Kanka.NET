@@ -71,20 +71,20 @@ namespace Kanka.NET
         /// Get the profile of the current user
         /// </summary>
         /// <returns> Task<ResponseShell<Profile>></Profile></returns>
-        public async Task<ResponseShell<Profile>> GetProfile()
+        public async Task<KankaResponse<Profile>> GetProfile()
         {
             var request = new RestRequest("profile", Method.Get);
-            return await _client.GetAsync<ResponseShell<Profile>>(request);
+            return await _client.GetAsync<KankaResponse<Profile>>(request);
         }
 
         /// <summary>
         /// Get all the Campaigns for the current user
         /// </summary>
         /// <returns>Task<ResponseShell<List<Campaign>>></returns>
-        public async Task<ResponseShell<List<Campaign>>> GetCampaigns()
+        public async Task<KankaResponse<List<Campaign>>> GetCampaigns()
         {
             var request = new RestRequest("campaigns", Method.Get);
-            return await _client.GetAsync<ResponseShell<List<Campaign>>>(request);
+            return await _client.GetAsync<KankaResponse<List<Campaign>>>(request);
         }
 
         /// <summary>
@@ -94,13 +94,13 @@ namespace Kanka.NET
         /// <typeparam name="T">T must be a model class</typeparam>
         /// <param name="campaign_id">a valid campaign id - get this beforehand</param>
         /// <returns>Task<ResponseShell<T>></returns>
-        public async Task<ResponseShell<T>> GetEndpoint<T>(int campaign_id) where T : ICampaignRequired, new()
+        public async Task<KankaResponse<T>> GetEndpoint<T>(int campaign_id) where T : ICampaignRequired, new()
         {
             string path = $"campaigns/{campaign_id}/{typeof(T).Name.Pluralize}";
 
             var request = new RestRequest(path, Method.Get);
 
-            return await _client.GetAsync<ResponseShell<T>>(request);
+            return await _client.GetAsync<KankaResponse<T>>(request);
         }
     }
 }

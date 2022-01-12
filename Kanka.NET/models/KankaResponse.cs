@@ -6,7 +6,7 @@ namespace Kanka.NET.models
     /// class for the JSON top-level response from Kanka
     /// </summary>
     /// <typeparam name="T">Type the data payload contains - use collection for arrays</typeparam>
-    public class ResponseShell<T>
+    public class KankaResponse<T>
     {
         [JsonPropertyName("data")]
         public T Data { get; set; }
@@ -15,16 +15,16 @@ namespace Kanka.NET.models
         public DateTime? LastSync { get; set; }
 
         [JsonPropertyName("links")]
-        public ResponseLink? Links { get; set; }
+        public LinkBlock? Links { get; set; }
 
         [JsonPropertyName("meta")]
-        public MetaResponse? Meta { get; set; }
+        public MetaBlock? Meta { get; set; }
     }
 
     /// <summary>
     /// small class to hold the Link payload top-level response
     /// </summary>
-    public class ResponseLink
+    public class LinkBlock
     {
         [JsonPropertyName("first")]
         public string? FirstPath { get; set; }
@@ -42,7 +42,7 @@ namespace Kanka.NET.models
     /// <summary>
     /// small class to hold the meta payload response
     /// </summary>
-    public class MetaResponse
+    public class MetaBlock
     {
         [JsonPropertyName("current_page")]
         public int CurrentPage { get; set; }
