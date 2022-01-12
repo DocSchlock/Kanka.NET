@@ -93,10 +93,13 @@ namespace Kanka.NET
         /// </summary>
         /// <typeparam name="T">T must be a model class</typeparam>
         /// <param name="campaign_id">a valid campaign id - get this beforehand</param>
+        /// <param name="endpointId">the id of the object you want to receive from the endpoint - do not use if you want all results from the endpoint</param>
         /// <returns>Task<ResponseShell<T>></returns>
-        public async Task<KankaResponse<T>> GetEndpoint<T>(int campaign_id) where T : ICampaignRequired, new()
+        public async Task<KankaResponse<T>> GetEndpoint<T>(int campaign_id, int? endpointId = null) where T : ICampaignRequired, new()
         {
             string path = $"campaigns/{campaign_id}/{typeof(T).Name.Pluralize}";
+            if (endpointId != null)
+                path += $"/{endpointId}";
 
             var request = new RestRequest(path, Method.Get);
 
