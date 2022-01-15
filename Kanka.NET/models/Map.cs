@@ -48,7 +48,7 @@ namespace Kanka.NET.models
         public MapGroup[] Groups { get; set; }
     }
 
-    public class MapLayer
+    public class MapLayer : ISubEndpoint
     {
         [JsonPropertyName("name")]
         public string? Name { get; set; }
@@ -91,9 +91,11 @@ namespace Kanka.NET.models
 
         [JsonPropertyName("visibility")]
         public string Visibility { get; set; }
+
+        public static string GetPath() => "map_layers";
     }
 
-    public class MapGroup
+    public class MapGroup : ISubEndpoint
     {
         [JsonPropertyName("created_at")]
         public DateTime CreatedAt { get; set; }
@@ -127,9 +129,11 @@ namespace Kanka.NET.models
 
         [JsonPropertyName("is_shown")]
         public bool IsShown { get; set; }
+
+        public static string GetPath() => "map_groups";
     }
 
-    public class MapMarker
+    public class MapMarker : ISubEndpoint
     {
         [JsonPropertyName("id")]
         public int ID { get; set; }
@@ -197,7 +201,10 @@ namespace Kanka.NET.models
         [JsonPropertyName("size_id")]
         public int SizeId { get; set; }
 
+        [JsonPropertyName("polygon_style")]
         public string[] PolygonStyle { get; set; } // what is this?
+
+        public static string GetPath() => "map_markers";
     }
 
     public enum MapMarkerIcon

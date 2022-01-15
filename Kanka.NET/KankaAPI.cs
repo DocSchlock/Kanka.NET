@@ -93,18 +93,112 @@ namespace Kanka.NET
         /// See GetCampaigns and GetProfile for those objects
         /// </summary>
         /// <typeparam name="T">T must be a model class</typeparam>
-        /// <param name="campaign_id">a valid campaign id - get this beforehand</param>
+        /// <param name="campaignId">a valid campaign id - get this beforehand</param>
         /// <param name="endpointId">the id of the object you want to receive from the endpoint - do not use if you want all results from the endpoint</param>
         /// <returns>Task<ResponseShell<T>></returns>
-        public async Task<KankaResponse<T>> GetEndpoint<T>(int campaign_id, int? endpointId = null) where T : ICampaignRequired, new()
+        public async Task<KankaResponse<T>> GetEndpoint<T>(int campaignId, int? endpointId = null) where T : ICampaignRequired, new()
+        {
+            string path = GetEndpointPath<T>(campaignId, endpointId);
+
+            var request = new RestRequest(path, Method.Get);
+
+            return await _client.GetAsync<KankaResponse<T>>(request);
+        }
+
+        public async Task<KankaResponse<X>> GetSubEndpoint<T, X>(int campaignId, int endpointId, int? subEndpointId = null) where T : ICampaignRequired, new() where X : ISubEndpoint, new()
+        {
+            string path = GetSubEndpointPath<T, X>(campaignId, endpointId, subEndpointId);
+
+            var request = new RestRequest(path, Method.Get);
+
+            return await _client.GetAsync<KankaResponse<X>>(request);
+        }
+
+        /// <summary>
+        /// deletes a specific record from a main endpoint
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="campaignId"></param>
+        /// <param name="endpointId"></param>
+        /// <returns></returns>
+        public async Task<KankaResponse<T>> DeleteEndpointId<T>(int campaignId, int endpointId) where T : ICampaignRequired, new()
+        {
+            string path = GetEndpointPath<T>(campaignId, endpointId);
+
+            var request = new RestRequest(path, Method.Delete);
+
+            return await _client.DeleteAsync<KankaResponse<T>>(request);
+        }
+
+        /// <summary>
+        /// deletes a specifc record from a sub-endpoint
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="X"></typeparam>
+        /// <param name="campaignId"></param>
+        /// <param name="endpointId"></param>
+        /// <param name="subEndpointId"></param>
+        /// <returns></returns>
+        public async Task<KankaResponse<X>> DeleteSubEndpointId<T, X>(int campaignId, int endpointId, int subEndpointId) where T : ICampaignRequired, new() where X : ISubEndpoint, new()
+        {
+            string path = GetSubEndpointPath<T, X>(campaignId, endpointId, subEndpointId);
+
+            var request = new RestRequest(path, Method.Get);
+
+            return await _client.DeleteAsync<KankaResponse<X>>(request);
+        }
+
+        /// <summary>
+        /// Gets the path to the endpoint
+        /// Can be used to get a specific record as well
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="campaign_id"></param>
+        /// <param name="endpointId"></param>
+        /// <returns></returns>
+        private string GetEndpointPath<T>(int campaign_id, int? endpointId = null) where T : ICampaignRequired, new()
         {
             string path = $"campaigns/{campaign_id}/{typeof(T).Name.Pluralize}";
             if (endpointId != null)
                 path += $"/{endpointId}";
 
-            var request = new RestRequest(path, Method.Get);
+            return path;
+        }
 
-            return await _client.GetAsync<KankaResponse<T>>(request);
+        /// <summary>
+        /// Returns the value of a sub-endpoint
+        /// </summary>
+        /// <typeparam name="T">main endpoint below campaign</typeparam>
+        /// <typeparam name="X">sub-endpoint of main endpoint</typeparam>
+        /// <param name="campaign_id"></param>
+        /// <param name="endpointId"></param>
+        /// <returns></returns>
+        private static string GetSubEndpointPath<T, X>(int campaign_id, int endpointId, int? subEndpointId) where T : ICampaignRequired, new() where X : ISubEndpoint, new()
+        {
+            // TODO need to add underscores to sub point
+            // use reflection to invoke a static method on the sub endpoints to get the path
+            // if returns null then use the regular pluralize
+            var path = $"campaigns/{campaign_id}/{typeof(T).Name.Pluralize}/{endpointId}/";
+            try
+            {
+                // get the subendpoint path
+                // this code is to make sure the underscore paths are correct
+                var obj = typeof(X).GetMethod("GetPath")?.Invoke(null, null);
+                if (obj == null || obj.ToString() == string.Empty)
+                    path += $"{typeof(X).Name.Pluralize}";
+                else
+                    path += $"{obj}";
+
+                // add the subendpointid if not null
+                if (subEndpointId != null)
+                    path += $"/{subEndpointId}";
+            }
+            catch (Exception ex)
+            {
+                path = string.Empty;
+            }
+
+            return path;
         }
     }
 }
