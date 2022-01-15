@@ -9,7 +9,7 @@ Eventually, all features of the API will be supported in code, and this project 
 
 ## What can I do with this?
 
-Any action the API allows a user to take, you will be able to do with Kanka.NET.
+Any action the API allows a user to take, you will be able to do with Kanka.NET, barring deprecated endpoints.
 
 ## What's the status?
 
@@ -30,7 +30,5 @@ Any action the API allows a user to take, you will be able to do with Kanka.NET.
 |Journal      |:heavy_check_mark:      |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
 |Ability      |:heavy_check_mark:	   |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
 |Tag          |:heavy_check_mark:      |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
-|Conversation |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
 |Map		  |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
-|Dice Roll    |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
 |Entity	      |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|

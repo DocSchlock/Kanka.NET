@@ -90,6 +90,7 @@ namespace Kanka.NET
         /// <summary>
         /// Generic Get method for all endpoints that require a campaign id
         /// This method can only accept classes that implement ICampaignRequired
+        /// See GetCampaigns and GetProfile for those objects
         /// </summary>
         /// <typeparam name="T">T must be a model class</typeparam>
         /// <param name="campaign_id">a valid campaign id - get this beforehand</param>
