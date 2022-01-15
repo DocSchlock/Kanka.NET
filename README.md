@@ -9,28 +9,28 @@ Eventually, all features of the API will be supported in code, and this project 
 
 ## What can I do with this?
 
-Any action the API allows a user to take, you will be able to do with Kanka.NET.
+Any action the API allows a user to take, you will be able to do with Kanka.NET, barring deprecated endpoints.
 
 ## What's the status?
 
-We just started development recently and are working on getting the core architecture up and running. GET functionality will be available soon for all endpoints.
+Below is the status of all functions. Note, at this time, sub-endpoints like map markers and all the sub-endpoints for entity are not supported.
 
-| Endpoint | GET | PUT | PATCH | DELETE |
+| Endpoint | GET | POST | PATCH | DELETE |
 |:------------|:----------------------:|:----------------------:|:----------------------:|:----------------------:|
 |Profile      |:heavy_check_mark:      ||||
 |Campaign     |:heavy_check_mark:      ||||
-|Character    |:heavy_check_mark:      |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
+|Character    |:heavy_check_mark:      |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
 |Location     |:heavy_check_mark:      |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
 |Family       |:heavy_check_mark:      |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
 |Organisation |:heavy_check_mark:      |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
-|Item         |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
+|Item         |:heavy_check_mark: 	   |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
 |Note         |:heavy_check_mark:      |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
 |Event        |:heavy_check_mark:      |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
-|Calendar     |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
-|Race         |:heavy_check_mark:      |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:
+|Calendar     |:heavy_check_mark:	   |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
+|Race         |:heavy_check_mark:      |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
 |Quest        |:heavy_check_mark:      |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
 |Journal      |:heavy_check_mark:      |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
-|Ability      |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
+|Ability      |:heavy_check_mark:	   |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
 |Tag          |:heavy_check_mark:      |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
-|Conversation |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
-|Dice Roll    |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
+|Map		  |:heavy_check_mark:	   |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
+|Entity	      |:heavy_check_mark:	   |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|

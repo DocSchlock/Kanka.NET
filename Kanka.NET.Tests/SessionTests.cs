@@ -38,7 +38,7 @@ namespace Kanka.NET.Tests
         [TestMethod]
         public void DeserializeTest()
         {
-            var obj = JsonSerializer.Deserialize<ResponseShell<Profile>>(_response);
+            var obj = JsonSerializer.Deserialize<KankaResponse<Profile>>(_response);
 
             Assert.IsNotNull(obj);
         }

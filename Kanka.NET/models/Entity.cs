@@ -1,30 +1,31 @@
-﻿using Kanka.NET.models.interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace Kanka.NET.models
 {
-    internal class Entity : IEntity
+    public class Entity : EndpointAbstract
     {
-        public int id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string entry { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string entry_parsed { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string image { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string image_full { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string image_thumb { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Guid image_uuid { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool is_private { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int entity_id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Tag[] tags { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public DateTime created_at { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int created_by { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public DateTime updated_at { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int updated_by { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
 
-        public bool IsPluralized { get => throw new NotImplementedException(); }
+        [JsonPropertyName("child_id")]
+        public int ChildId { get; set; }
+
+        [JsonPropertyName("tags")]
+        public int[] Tags { get; set; }
+
+        [JsonPropertyName("campaign_id")]
+        public int CampaignId { get; set; }
+
+        [JsonPropertyName("is_attributes_private")]
+        public bool IsAttributesPrivate { get; set; }
+
+        [JsonPropertyName("tooltip")]
+        public string? Tooltip { get; set; }
+
+        [JsonPropertyName("header_image")]
+        public string? HeaderImage { get; set; }
+
+        [JsonPropertyName("image_uuid")]
+        public Guid? ImageUUID { get; set; } // superboosted
     }
 }
