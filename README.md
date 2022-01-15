@@ -13,6 +13,8 @@ Any action the API allows a user to take, you will be able to do with Kanka.NET,
 
 ## What's the status?
 
+Below is the status of all functions. Note, at this time, sub-endpoints like map markers and all the sub-endpoints for entity are not supported.
+
 | Endpoint | GET | POST | PATCH | DELETE |
 |:------------|:----------------------:|:----------------------:|:----------------------:|:----------------------:|
 |Profile      |:heavy_check_mark:      ||||
@@ -30,5 +32,5 @@ Any action the API allows a user to take, you will be able to do with Kanka.NET,
 |Journal      |:heavy_check_mark:      |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
 |Ability      |:heavy_check_mark:	   |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
 |Tag          |:heavy_check_mark:      |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
-|Map		  |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
-|Entity	      |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
+|Map		  |:heavy_check_mark:	   |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
+|Entity	      |:heavy_check_mark:	   |:heavy_multiplication_x:|:heavy_multiplication_x:|:heavy_multiplication_x:|
