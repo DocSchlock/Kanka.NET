@@ -10,9 +10,6 @@ namespace Kanka.NET.models
         [JsonPropertyName("child_id")]
         public int ChildId { get; set; }
 
-        [JsonPropertyName("tags")]
-        public int[] Tags { get; set; }
-
         [JsonPropertyName("campaign_id")]
         public int CampaignId { get; set; }
 
