@@ -2,6 +2,8 @@
 using Kanka.NET.models;
 using Kanka.NET.models.interfaces;
 using RestSharp;
+using Polly;
+using Polly.RateLimit;
 
 namespace Kanka.NET
 {
@@ -10,11 +12,15 @@ namespace Kanka.NET
         private const string API_VERSION = "1.0";
         private const string API_BASE_PATH = $"https://kanka.io/api/{API_VERSION}/";
         private readonly RestClient _client;
+        private readonly AsyncRateLimitPolicy rateLimit;
 
         public Profile TokenProfile { get; set; }
 
         public KankaAPI(string tokenString)
         {
+            // configure the rate-limiter
+            rateLimit = Policy.RateLimitAsync(30, TimeSpan.FromSeconds(60));
+
             // only supports Personal Access Tokens at this time
 
             // create the default headers for the object
@@ -39,15 +45,15 @@ namespace Kanka.NET
             // this has to be run sync to test in the constructor
             // Kanka revokes all tokens once per year due to system upgrades
 
-            var profileResponse = GetProfile().GetAwaiter().GetResult(); // this will throw on bad auth
+            //var profileResponse = GetProfile().GetAwaiter().GetResult(); // this will throw on bad auth
 
-            if (profileResponse != null)
-            {
-                // we got data
-                TokenProfile = profileResponse.Data;
-            }
-            else
-                throw new ArgumentException("Check the authorization status on your token.");
+            //if (profileResponse != null)
+            //{
+            //    // we got data
+            //    TokenProfile = profileResponse.Data;
+            //}
+            //else
+            //    throw new ArgumentException("Check the authorization status on your token.");
         }
 
         // to run any non-Profile, non-Campaign functions, a Campaign must be selected
@@ -74,7 +80,7 @@ namespace Kanka.NET
         public async Task<KankaResponse<Profile>> GetProfile()
         {
             var request = new RestRequest("profile", Method.Get);
-            return await _client.GetAsync<KankaResponse<Profile>>(request);
+            return await rateLimit.ExecuteAsync(() => _client.GetAsync<KankaResponse<Profile>>(request));
         }
 
         /// <summary>
@@ -84,7 +90,7 @@ namespace Kanka.NET
         public async Task<KankaResponse<List<Campaign>>> GetCampaigns()
         {
             var request = new RestRequest("campaigns", Method.Get);
-            return await _client.GetAsync<KankaResponse<List<Campaign>>>(request);
+            return await rateLimit.ExecuteAsync(() => _client.GetAsync<KankaResponse<List<Campaign>>>(request));
         }
 
         /// <summary>
@@ -102,7 +108,7 @@ namespace Kanka.NET
 
             var request = new RestRequest(path, Method.Get);
 
-            return await _client.GetAsync<KankaResponse<T>>(request);
+            return await rateLimit.ExecuteAsync(() => _client.GetAsync<KankaResponse<T>>(request));
         }
 
         public async Task<KankaResponse<X>> GetSubEndpoint<T, X>(int campaignId, int endpointId, int? subEndpointId = null) where T : ICampaignRequired, new() where X : ISubEndpoint, new()
@@ -111,7 +117,7 @@ namespace Kanka.NET
 
             var request = new RestRequest(path, Method.Get);
 
-            return await _client.GetAsync<KankaResponse<X>>(request);
+            return await rateLimit.ExecuteAsync(() => _client.GetAsync<KankaResponse<X>>(request));
         }
 
         /// <summary>
@@ -127,7 +133,7 @@ namespace Kanka.NET
 
             var request = new RestRequest(path, Method.Delete);
 
-            return await _client.DeleteAsync<KankaResponse<T>>(request);
+            return await rateLimit.ExecuteAsync(() => _client.DeleteAsync<KankaResponse<T>>(request));
         }
 
         /// <summary>
@@ -145,7 +151,7 @@ namespace Kanka.NET
 
             var request = new RestRequest(path, Method.Get);
 
-            return await _client.DeleteAsync<KankaResponse<X>>(request);
+            return await rateLimit.ExecuteAsync(() => _client.DeleteAsync<KankaResponse<X>>(request));
         }
 
         /// <summary>
